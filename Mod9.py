@@ -16,7 +16,7 @@ class Car:
     def accelerate(self, speed_change):
 
         self.current_speed += speed_change
-        if self.current_speed >= self.top_speed:
+        if self.current_speed > self.top_speed:
             self.current_speed = self.top_speed
         if self.current_speed < 0:
             self.current_speed = 0
@@ -42,22 +42,20 @@ Cars = []
 for i in range(10):
     Cars.append(Car("ABC-" + str(i+1), random.randint(100, 200)))
 for Car in Cars:
-    print(Car.print_info())
+    Car.print_info()
 
 stop = False
 laps = 0
 while not stop:
+    laps += 1
+
     for Car in Cars:
         Car.accelerate(random.randint(-10, 15))
         Car.drive(1)
-        laps += 1
-        """for Car in Cars:
-            print(Car.print_info())
-            print(laps)"""
         if Car.distance >= 10000:
             stop = True
             break
 
 for Car in Cars:
-    print(Car.print_info())
+    Car.print_info()
     print(laps)
